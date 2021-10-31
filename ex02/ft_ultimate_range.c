@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ultimate_range.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppetchda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 18:23:42 by ecaceres          #+#    #+#             */
-/*   Updated: 2019/08/07 18:23:44 by ecaceres         ###   ########.fr       */
+/*   Created: 2021/10/26 23:52:59 by porrapat          #+#    #+#             */
+/*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-int		ft_ultimate_range(int **range, int min, int max)
+int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	bound;
 	int	index;
@@ -24,7 +24,8 @@ int		ft_ultimate_range(int **range, int min, int max)
 		return (0);
 	}
 	bound = max - min - 1;
-	if ((buffer = malloc(bound * sizeof(int))) == NULL)
+	buffer = malloc(bound * sizeof(int));
+	if (buffer == NULL)
 	{
 		*range = 0;
 		return (-1);

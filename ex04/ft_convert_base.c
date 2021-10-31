@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_convert_base.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppetchda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/08 13:25:01 by ecaceres          #+#    #+#             */
-/*   Updated: 2019/08/08 17:54:01 by ecaceres         ###   ########.fr       */
+/*   Created: 2021/10/26 23:52:59 by porrapat          #+#    #+#             */
+/*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		compute_number_length(unsigned int number, int radix, bool negative);
 bool	is_space(char c);
 bool	is_base_valid(char *str);
 
-int		resolve_base(char *base, char match)
+int	resolve_base(char *base, char match)
 {
 	int		index;
 
@@ -43,7 +43,8 @@ char	*ft_buffer_base(char *base, unsigned int number, bool negative)
 
 	radix = ft_str_length(base);
 	length = compute_number_length(number, radix, negative);
-	if (!(string = (char *)malloc((length + 1) * sizeof(char))))
+	string = (char *)malloc((length + 1) * sizeof(char));
+	if (!string)
 		return (0);
 	if (negative)
 		string[0] = '-';

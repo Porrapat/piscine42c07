@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppetchda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/12 13:59:15 by ecaceres          #+#    #+#             */
-/*   Updated: 2019/08/12 16:39:44 by ecaceres         ###   ########.fr       */
+/*   Created: 2021/10/26 23:52:59 by porrapat          #+#    #+#             */
+/*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strncpy(char *dest, char *src, unsigned int n)
 	return (dest);
 }
 
-int		count_occur(char *str, char *charset)
+int	count_occur(char *str, char *charset)
 {
 	int		count;
 	char	*previous;
@@ -67,7 +67,7 @@ int		count_occur(char *str, char *charset)
 	return (count);
 }
 
-int		add_part(char **entry, char *previous, int size, char *charset)
+int	add_part(char **entry, char *previous, int size, char *charset)
 {
 	if (is_char_in_string(previous[0], charset))
 	{
