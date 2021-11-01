@@ -41,4 +41,5 @@ int		main(void)
 	max = 10;
 	printf("min = %d, max = %d -> ", min, max);
 	debug_dump_array(ft_range(min, max), max - min);
+	printf("\n");
 }

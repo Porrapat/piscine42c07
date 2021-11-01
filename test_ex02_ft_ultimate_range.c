@@ -45,5 +45,6 @@ int		main(void)
 	bound = ft_ultimate_range(&range, min, max);
 	printf("min = %d, max = %d -> (bound = %d) ", min, max, bound);
 	fflush(stdout);
-	debug_dump_array(range, bound + 2);
+	debug_dump_array(range, bound);
+	printf("\n");
 }
