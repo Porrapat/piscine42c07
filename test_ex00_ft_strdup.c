@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppetchda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 17:06:22 by ecaceres          #+#    #+#             */
-/*   Updated: 2019/08/07 17:06:23 by ecaceres         ###   ########.fr       */
+/*   Created: 2021/10/26 23:52:59 by porrapat          #+#    #+#             */
+/*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,9 @@
 #include <stdio.h>
 #include <string.h>
 
-int		ft_str_length(char *str)
-{
-	int	index;
+char	*ft_strdup(char *src);
 
-	index = 0;
-	while (str[index])
-		index++;
-	return (index);
-}
-
-char	*ft_strdup(char *src)
-{
-	int		index;
-	char	*dest;
-
-	index = 0;
-	if ((dest = (char *)malloc(ft_str_length(src) * sizeof(char) + 1)) == NULL)
-		return (0);
-	while (src[index])
-	{
-		dest[index] = src[index];
-		index++;
-	}
-	dest[index] = '\0';
-	return (dest);
-}
-
-int		main(void)
+int	main(void)
 {
 	char	*str;
 	char	*allocated;

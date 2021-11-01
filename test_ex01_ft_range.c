@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimate_range.c                                :+:      :+:    :+:   */
+/*   ft_range.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ppetchda <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 18:23:42 by ecaceres          #+#    #+#             */
-/*   Updated: 2019/08/07 18:23:44 by ecaceres         ###   ########.fr       */
+/*   Created: 2021/10/26 23:52:59 by porrapat          #+#    #+#             */
+/*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 
-int		ft_ultimate_range(int **range, int min, int max)
+int		*ft_range(int min, int max)
 {
-	int	bound;
+	int	range;
 	int	index;
 	int	*buffer;
 
 	if (min >= max)
-	{
-		*range = 0;
 		return (0);
-	}
-	bound = max - min - 1;
-	if ((buffer = malloc(bound * sizeof(int))) == NULL)
-	{
-		*range = 0;
-		return (-1);
-	}
-	*range = buffer;
+	range = max - min - 1;
+	if ((buffer = malloc(range * sizeof(int))) == NULL)
+		return (0);
 	index = 0;
-	while (index <= bound)
+	while (index <= range)
 	{
 		buffer[index] = min + index;
 		index++;
 	}
-	return (bound + 1);
+	return (buffer);
 }
 
 void	debug_dump_array(int numbers[], int size)
@@ -62,13 +55,9 @@ int		main(void)
 {
 	int	min;
 	int	max;
-	int	*range;
-	int	bound;
 
 	min = 5;
 	max = 10;
-	bound = ft_ultimate_range(&range, min, max);
-	printf("min = %d, max = %d -> (bound = %d) ", min, max, bound);
-	fflush(stdout);
-	debug_dump_array(range, bound + 2);
+	printf("min = %d, max = %d -> ", min, max);
+	debug_dump_array(ft_range(min, max), max - min);
 }
