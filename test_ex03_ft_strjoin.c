@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int		ft_str_length(char *str)
+int	ft_str_length(char *str)
 {
 	int	index;
 

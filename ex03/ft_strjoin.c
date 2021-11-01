@@ -53,19 +53,11 @@ int	ft_compute_final_length(char **strings, int size, int sep_length)
 	return (final_length);
 }
 
-char	*ft_strjoin(int size, char **strs, char *sep)
+void	joining(char *string, int size, char *sep, char **strs)
 {
-	int		full_length;
-	int		index;
 	char	*read_head;
-	char	*string;
+	int		index;
 
-	if (size == 0)
-		return ((char *)malloc(sizeof(char)));
-	full_length = ft_compute_final_length(strs, size, ft_str_length(sep));
-	string = (char *)malloc((full_length + 1) * sizeof(char));
-	if (!string)
-		return (0);
 	read_head = string;
 	index = 0;
 	while (index < size)
@@ -80,5 +72,19 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		index++;
 	}
 	*read_head = '\0';
+}
+
+char	*ft_strjoin(int size, char **strs, char *sep)
+{
+	int		full_length;
+	char	*string;
+
+	if (size == 0)
+		return ((char *)malloc(sizeof(char)));
+	full_length = ft_compute_final_length(strs, size, ft_str_length(sep));
+	string = (char *)malloc((full_length + 1) * sizeof(char));
+	if (!string)
+		return (0);
+	joining(string, size, sep, strs);
 	return (string);
 }

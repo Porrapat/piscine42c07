@@ -13,26 +13,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int		*ft_range(int min, int max)
-{
-	int	range;
-	int	index;
-	int	*buffer;
-
-	if (min >= max)
-		return (0);
-	range = max - min - 1;
-	if ((buffer = malloc(range * sizeof(int))) == NULL)
-		return (0);
-	index = 0;
-	while (index <= range)
-	{
-		buffer[index] = min + index;
-		index++;
-	}
-	return (buffer);
-}
-
+int	*ft_range(int min, int max);
 void	debug_dump_array(int numbers[], int size)
 {
 	int index;
