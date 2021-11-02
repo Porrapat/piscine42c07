@@ -1,0 +1,4 @@
+result with size = 0 : $$
+result with size = 1 : $lol$
+result with size = 2 : $lol1234$
+result with size = 3 : $lol1234poiuic$

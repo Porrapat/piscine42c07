@@ -1,0 +1,3 @@
+x : base : $Hello World with malloc()$
+c : alloc : $Hello World with malloc()$
+ft : alloc : $Hello World with malloc()$
