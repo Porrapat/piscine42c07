@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdbool.h>
+#include <stdbool.h>
 
 int		ft_str_length(char *str)
 {
