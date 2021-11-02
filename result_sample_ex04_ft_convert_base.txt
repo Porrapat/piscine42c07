@@ -1,0 +1,5 @@
+result : $101010$
+result : $7fffffff$
+result : $-1111111111111111111111111111111$
+result : $-1023$
+result : $a$

@@ -82,6 +82,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	int				minus;
 	int				resolved;
 	unsigned int	result;
+	bool			is_not_minus;
 
 	if (!is_base_valid(base_from) || !is_base_valid(base_to))
 		return (NULL);
@@ -98,5 +99,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	result = shif(resolved, result, nbr, base_from);
 	if (result == 0)
 		minus = 1;
-	return (ft_buffer_base(base_to, result, (minus > 0 ? false : true)));
+	if (minus > 0)
+		is_not_minus = false;
+	else
+		is_not_minus = true;
+	return (ft_buffer_base(base_to, result, is_not_minus));
 }
