@@ -88,6 +88,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		nbr++;
 		resolved = resolve_base(base_from, *nbr);
 	}
-	minus = result == 0 ? 1 : minus;
+	if (result == 0)
+		minus = 1;
 	return (ft_buffer_base(base_to, result, (minus > 0 ? false : true)));
 }
