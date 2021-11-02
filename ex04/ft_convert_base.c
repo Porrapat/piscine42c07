@@ -61,17 +61,30 @@ char	*ft_buffer_base(char *base, unsigned int number, bool negative)
 	return (string);
 }
 
+unsigned int	shif(int resol, unsigned int result, char *nbr, char *base_from)
+{
+	int	radix;
+
+	radix = ft_str_length(base_from);
+	resol = resolve_base(base_from, *nbr);
+	while (resol != NO_MATCH)
+	{
+		result *= radix;
+		result += resol;
+		nbr++;
+		resol = resolve_base(base_from, *nbr);
+	}
+	return (result);
+}
+
 char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int				radix;
 	int				minus;
 	int				resolved;
 	unsigned int	result;
 
 	if (!is_base_valid(base_from) || !is_base_valid(base_to))
 		return (NULL);
-	radix = ft_str_length(base_from);
-	result = 0;
 	minus = 1;
 	while (is_space(*nbr))
 		nbr++;
@@ -80,14 +93,9 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		if (*(nbr++) == '-')
 			minus *= -1;
 	}
-	resolved = resolve_base(base_from, *nbr);
-	while (resolved != NO_MATCH)
-	{
-		result *= radix;
-		result += resolved;
-		nbr++;
-		resolved = resolve_base(base_from, *nbr);
-	}
+	result = 0;
+	resolved = 0;
+	result = shif(resolved, result, nbr, base_from);
 	if (result == 0)
 		minus = 1;
 	return (ft_buffer_base(base_to, result, (minus > 0 ? false : true)));
