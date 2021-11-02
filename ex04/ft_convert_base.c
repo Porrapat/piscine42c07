@@ -20,7 +20,7 @@ int		compute_number_length(unsigned int number, int radix, bool negative);
 bool	is_space(char c);
 bool	is_base_valid(char *str);
 
-int		resolve_base(char *base, char match)
+int	resolve_base(char *base, char match)
 {
 	int		index;
 
@@ -43,11 +43,15 @@ char	*ft_buffer_base(char *base, unsigned int number, bool negative)
 
 	radix = ft_str_length(base);
 	length = compute_number_length(number, radix, negative);
-	if (!(string = (char *)malloc((length + 1) * sizeof(char))))
+	string = (char *)malloc((length + 1) * sizeof(char));
+	if (!string)
 		return (0);
 	if (negative)
 		string[0] = '-';
-	index = negative ? 1 : 0;
+	if (negative)
+		index = 1;
+	else
+		index = 0;
 	while (index < length)
 	{
 		string[length - (!negative) - index++] = base[number % radix];
@@ -76,11 +80,13 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 		if (*(nbr++) == '-')
 			minus *= -1;
 	}
-	while ((resolved = resolve_base(base_from, *nbr)) != NO_MATCH)
+	resolved = resolve_base(base_from, *nbr);
+	while (resolved != NO_MATCH)
 	{
 		result *= radix;
 		result += resolved;
 		nbr++;
+		resolved = resolve_base(base_from, *nbr);
 	}
 	minus = result == 0 ? 1 : minus;
 	return (ft_buffer_base(base_to, result, (minus > 0 ? false : true)));
