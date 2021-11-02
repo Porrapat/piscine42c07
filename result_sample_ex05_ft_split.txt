@@ -1,0 +1,7 @@
+count occ: 2
+tab start
+tab[0]: $aaa$
+tab[1]: $addsaf$
+tab[2]: $fdsa sdaf$
+tab[3]: $ fdsasd$
+tab end
