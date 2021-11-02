@@ -13,7 +13,7 @@
 #include <stdbool.h>
 #include <stdbool.h>
 
-int		ft_str_length(char *str)
+int	ft_str_length(char *str)
 {
 	int	index;
 
@@ -56,11 +56,18 @@ bool	is_base_valid(char *str)
 	return (true);
 }
 
-int		compute_number_length(unsigned int number, int radix, bool negative)
+int	compute_number_length(unsigned int number, int radix, bool negative)
 {
 	unsigned int	length;
 
-	length = negative ? 1 : 0;
+	if (negative)
+	{
+		length = 1;
+	}
+	else
+	{
+		length = 0;
+	}
 	while (true)
 	{
 		length++;
