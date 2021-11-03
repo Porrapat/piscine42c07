@@ -1,0 +1,9 @@
+Case: "aaa,bbb,ccc ddd,eee" ", "
+------------------
+tab start
+tab[0]: $aaa$
+tab[1]: $bbb$
+tab[2]: $ccc$
+tab[3]: $ddd$
+tab[4]: $eee$
+tab end

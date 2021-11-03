@@ -9,102 +9,76 @@
 /*   Updated: 2021/10/26 23:53:55 by porrapat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include <stdlib.h>
-#include <stdbool.h>
 
-bool	is_char_in_string(char c, char *set)
+int	is_sep(char c, char *charset)
 {
-	while (true)
+	int	j;
+
+	j = 0;
+	while (charset[j])
 	{
-		if (*set == '\0')
-			return (c == '\0');
-		if (*set == c)
-			return (true);
-		set++;
+		if (c == charset[j])
+			return (1);
+		j++;
 	}
-	return (false);
+	return (0);
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+char	*strsub(char *s, int len)
 {
-	unsigned int	index;
+	char	*res;
+	int		i;
 
-	index = 0;
-	while (index < n && src[index] != '\0')
+	res = malloc((len + 1) * sizeof(char));
+	i = 0;
+	while (i < len)
 	{
-		dest[index] = src[index];
-		index++;
+		res[i] = s[i];
+		i++;
 	}
-	while (index < n)
-	{
-		dest[index] = '\0';
-		index++;
-	}
-	return (dest);
+	res[i] = 0;
+	return (res);
 }
 
-int	count_occur(char *str, char *charset)
+int	count_separator(char *str, char *charset)
 {
-	int		count;
-	char	*previous;
-	char	*next;
+	int	i;
+	int	n;
 
-	count = 0;
-	previous = str;
-	next = str;
-	while (true)
+	i = 0;
+	n = 1;
+	while (str[i])
 	{
-		if (is_char_in_string(*str, charset))
-			next = str;
-		if (next - previous > 1)
-			count++;
-		if (*str == '\0')
-			break ;
-		previous = next;
-		str++;
+		if (is_sep(str[i++], charset))
+			n++;
 	}
-	return (count);
-}
-
-int	add_part(char **entry, char *previous, int size, char *charset)
-{
-	if (is_char_in_string(previous[0], charset))
-	{
-		previous++;
-		size--;
-	}
-	*entry = (char *)malloc((size + 3) * sizeof(char));
-	ft_strncpy(*entry, previous, size);
-	(*entry)[size] = '\0';
-	(*entry)[size + 1] = '\0';
-	return (1);
+	return (n);
 }
 
 char	**ft_split(char *str, char *charset)
 {
-	int		index;
-	int		size;
-	char	*previous;
-	char	*next;
-	char	**array;
+	char	**res;
+	int		n;
+	int		idx;
+	int		start;
+	int		i;
 
-	array = (char **)malloc((count_occur(str, charset) + 1) * sizeof(char *));
-	index = 0;
-	previous = str;
-	next = str;
-	while (true)
+	start = 0;
+	idx = 0;
+	i = 0;
+	n = count_separator(str, charset);
+	res = malloc((n + 1) * sizeof(char *));
+	while (str[i])
 	{
-		if (is_char_in_string(*str, charset))
-			next = str;
-		size = next - previous;
-		if (size > 1)
-			index += add_part(&array[index], previous, size, charset);
-		if (*str == '\0')
-			break ;
-		previous = next;
-		str++;
+		if (!is_sep(str[i], charset) && i > 0 && is_sep(str[i - 1], charset))
+			start = i;
+		if (is_sep(str[i], charset) && i > 0 && !is_sep(str[i - 1], charset))
+			res[idx++] = strsub(str + start, i - start);
+		else if (!str[i + 1] && !is_sep(str[i], charset))
+			res[idx++] = strsub(str + start, i - start + 1);
+		i++;
 	}
-	array[index] = 0;
-	return (array);
+	res[idx] = 0;
+	return (res);
 }
